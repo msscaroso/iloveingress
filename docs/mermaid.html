@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <div class="mermaid">
+sequenceDiagram
+    controller ->> apiserver: List ingresses with annotation
+    apiserver ->> controller: Ingresses
+    Note Over controller: Get list of services/rules
+    loop Each service
+      Note Over controller: Verify service has endpoints
+      Note Over controller: set default backend for services without endpoints
+    end
+    Note Over controller: update reverse proxy rules
+    Note Over controller: reload reverse proxy
+  </div>
+ <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+ <script>mermaid.initialize({startOnLoad:true});</script>
+</body>
+</html>
