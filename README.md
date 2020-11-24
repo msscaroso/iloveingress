@@ -1,6 +1,6 @@
 # I Love Ingress
 
-Creating a ingress just for fun
+Creating an ingress controller just for fun
 
 ### Running e2e tests
 
