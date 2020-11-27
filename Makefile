@@ -19,7 +19,7 @@ e2e:
 	pytest -m "e2e"
 
 test:
-	pytest -m "not e2e"
+	pytest -vv
 
 apply-dev-cluster:
 	kubectl --context=kind-kind apply -f cluster/nginx.yaml

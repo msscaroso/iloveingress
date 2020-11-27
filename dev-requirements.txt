@@ -5,5 +5,5 @@ pluggy==0.13.1            # via pytest
 py==1.9.0                 # via pytest
 pyparsing==2.4.7          # via packaging
 pytest==6.1.2             # via -r dev-requirements.in
-six==1.15.0               # via packaging
+six==1.15.0               # via -c requirements.txt, packaging
 toml==0.10.2              # via pytest
