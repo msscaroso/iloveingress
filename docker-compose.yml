@@ -5,6 +5,9 @@ services:
     build:
       dockerfile: proxy/Dockerfile
       context: .
+    depends_on:
+      - web
+      - web2
     volumes:
     - ./conf:/etc/nginx
     - .:/app
@@ -13,13 +16,18 @@ services:
 
   web:
     image:  jmalloc/echo-server
-    depends_on:
-      - proxy
     ports:
     - 8080:8080
 
+  web2:
+    image:  jmalloc/echo-server
+    ports:
+    - 8081:8080
 
   e2e:
     build:
       dockerfile: e2e/Dockerfile
       context: .
+
+    depends_on:
+      - proxy
