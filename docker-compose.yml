@@ -1,0 +1,20 @@
+version: "3"
+services:
+  proxy:
+    image: nginx
+    volumes:
+    - ./conf:/etc/nginx
+    ports:
+    - 8000:80
+
+  web:
+    image:  jmalloc/echo-server
+    depends_on:
+      - proxy
+      - dev
+    ports:
+    - 8080:8080
+
+  dev:
+    image: ubuntu
+    command: sleep 3600
