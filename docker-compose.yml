@@ -1,9 +1,13 @@
 version: "3"
 services:
   proxy:
-    image: nginx
+    command: python services/main.py
+    build:
+      dockerfile: proxy/Dockerfile
+      context: .
     volumes:
     - ./conf:/etc/nginx
+    - .:/app
     ports:
     - 8000:80
 
@@ -11,10 +15,11 @@ services:
     image:  jmalloc/echo-server
     depends_on:
       - proxy
-      - dev
     ports:
     - 8080:8080
 
-  dev:
-    image: ubuntu
-    command: sleep 3600
+
+  e2e:
+    build:
+      dockerfile: e2e/Dockerfile
+      context: .
