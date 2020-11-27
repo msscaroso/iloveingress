@@ -13,6 +13,7 @@ class TestGenerateConfigFile(object):
         expected_conf = load_file_from_resources("nginx/location.conf")
         nginx_conf = BaseConfig()
         nginx_conf.add_location(
+            server_name="",
             path="/",
             to="http://example.com"
         )
@@ -22,10 +23,12 @@ class TestGenerateConfigFile(object):
         expected_conf = load_file_from_resources("nginx/multiple_locations.conf")
         nginx_conf = BaseConfig()
         nginx_conf.add_location(
+            server_name="",
             path="/",
             to="http://example.com"
         )
         nginx_conf.add_location(
+            server_name="",
             path="/test",
             to="http://another.com"
         )
