@@ -19,9 +19,8 @@ def translate_rules_to_locations(rules):
     return locations
 
 
-def translate_rules_to_nginx_conf(rules):
+def translate_locations_to_nginx_conf(locations):
     nginx = BaseConfig()
-    locations = translate_rules_to_locations(rules)
     for location in locations:
         nginx.add_location(
             **location

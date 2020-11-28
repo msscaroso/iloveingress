@@ -1,6 +1,6 @@
 import pytest
 
-from services.ingress import translate_rules_to_nginx_conf
+from services.ingress import translate_locations_to_nginx_conf, translate_rules_to_locations
 from tests.common import load_file_from_resources
 
 
@@ -20,5 +20,6 @@ class TestIngressService(object):
 
     def test_create_nginx_conf_from_rules(self, rules):
         expected_conf = load_file_from_resources("nginx/from_ingress_rules.conf")
-        conf = translate_rules_to_nginx_conf(rules)
+        locations = translate_rules_to_locations(rules)
+        conf = translate_locations_to_nginx_conf(locations)
         assert conf == expected_conf
