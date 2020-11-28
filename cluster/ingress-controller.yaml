@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iloveingress-controller
+  labels:
+    app: iloveingress-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iloveingress-controller
+  template:
+    metadata:
+      labels:
+        app: iloveingress-controller
+    spec:
+      containers:
+        - name: controller
+          image: localhost:5000/k8s_iloveingress_proxy
+          ports:
+            - containerPort: 80
+
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: iloveingress-nginx
+rules:
+- apiGroups: ["extensions", "networking.k8s.io"]
+  resources: ["ingresses"]
+  verbs: ["list", "get", "watch"]
+
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: iloveingress-nginx
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: iloveingress-nginx
+  apiGroup: rbac.authorization.k8s.io
