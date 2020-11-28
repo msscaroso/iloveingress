@@ -8,31 +8,17 @@ spec:
   rules:
   - http:
       paths:
-      - path: /testpath
+      - path: /testpath2
         pathType: Prefix
         backend:
           service:
-            name: nginx
+            name: echoserver
+            port:
+              number: 8080
+      - path: /apache
+        pathType: Prefix
+        backend:
+          service:
+            name: apache-server
             port:
               number: 80
-  - host: web
-    http:
-      paths:
-        - pathType: Prefix
-          path: /
-          backend:
-            service:
-              name: web
-              port:
-                number: 8080
-
-  - host: web2
-    http:
-      paths:
-        - backend:
-            service:
-              name: web
-              port:
-                number: 8080
-          path: /test
-          pathType: Prefix

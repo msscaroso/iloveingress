@@ -1,5 +1,10 @@
 from nginx.config.api import Config, Section
 from nginx.config.api.options import AttrDict
+"""
+This fixes a small bug in nginx-config-builder lib.
+The bug: It is not possible to add more than one 'server' directive.
+"""
+
 
 class AttrList(AttrDict):
     """ A dictionary/list hybrid that exposes values as attributes. """

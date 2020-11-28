@@ -19,7 +19,17 @@ spec:
           image: localhost:5000/k8s_iloveingress_proxy
           ports:
             - containerPort: 80
-
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: iloveingress-nginx
+spec:
+  selector:
+    app: iloveingress-controller
+  ports:
+    - protocol: TCP
+      port: 80
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -29,7 +39,6 @@ rules:
 - apiGroups: ["extensions", "networking.k8s.io"]
   resources: ["ingresses"]
   verbs: ["list", "get", "watch"]
-
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
