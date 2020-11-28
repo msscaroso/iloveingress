@@ -2,19 +2,33 @@
 
 Creating an ingress controller just for fun
 
-### Running e2e tests
-
-1) [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/) cluster with 1 contro-plane and 2 worker nodes
-2) [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) with 3 replicas running nginx http server
-3) [Service](https://kubernetes.io/docs/concepts/services-networking/service/) exposing the nginx deployment
-
-```shell script
-make tear_up
-``` 
 
 ### Requirements 
 
-- python
-- pip-tools
 - kind
+- docker
 - kubectl
+
+### Running
+
+First, setup the kind cluster
+
+```shell script
+make tear_up
+```
+
+Then build, push and run the ingress controller inside the
+cluster
+
+```shell script
+make build_push_run
+```
+
+Now you can access the ingress-controller through its service
+`iloveingress-nginx` inside a node
+
+```shell script
+docker exec -it <node_id> bash
+curl <svc_cluster_ip>
+```
+
