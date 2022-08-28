@@ -1,6 +1,7 @@
 # I Love Ingress
 
-Creating an ingress controller just for fun
+Creating an ingress controller just for fun. This does nothing useful.
+I did this just for fun when I was learning about kubernetes abstractions.
 
 
 ### Requirements 
